@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+.navbar {
+  background-color: #131e23;
+  height: 127px;
+}
+
+.navbar-brand img {
+  max-width: 100%;
+}
+
+.bg-fundo {
+  height: calc(100vh - 127px);
+  background-image: url('/assets/bg-image.png');
+  background-color: lightgray;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cadastro {
+  margin-top: 82px;
+}
+
+.cadastro .title {
+  color: #fff;
+  font-family: 'JetBrains Mono';
+  font-size: 44px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.box-btn-cadastrar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box-btn-cadastrar .btn-cadastrar {
+  padding: 16px 20px;
+  border-radius: 100px;
+  border: 1px solid #fff;
+  background: rgba(19, 30, 35, 0);
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.table {
+  margin-top: 32px;
+}
+
+.table td,
+.table th {
+  padding: 16px 32px;
+}
+
+.table thead {
+  height: 49px;
+  border: 1px solid #142025;
+  background-color: #142025;
+}
+
+.table thead tr {
+  color: #fff;
+  font-family: 'JetBrains Mono';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 131%;
+  vertical-align: middle;
+}
+
+.table tbody {
+  border-radius: 0px 0px 2px 2px;
+  background: #fff;
+}
+
+.table tbody tr {
+  height: 105px;
+  vertical-align: middle;
+}
+
+.table tbody tr td button {
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+}
+
+form {
+  color: #707070;
+  font-family: 'JetBrains Mono';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 16px */
+  text-transform: capitalize;
+}
+
+form div input {
+  border-radius: 2px;
+  background: #f5f5f5 !important;
+}
+
+/* Modal */
+.modal-header .btn-close {
+  margin-top: -85px;
+}
+
+.modal-content {
+  padding: 42px 0 0 0px;
+}
+
+.modal-header {
+  border: none;
+}
+
+.box-btn-cadastrar .btn-cadastrar:hover {
+  background: #505fff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+
+.modal-title {
+  color: #292929;
+  font-family: 'JetBrains Mono';
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.btn-modal-cadastro {
+  height: 52px;
+  padding: 10px 42px 10px 42px;
+  border-radius: 100px;
+  background: #131e23;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+}
+
+
+.btn-modal-cadastro.disabled,
+.btn-modal-cadastro:disabled {
+  background: #6c757d; /* Cor de fundo desabilitada */
+  color: #ddd; /* Cor do texto desabilitada */
+  cursor: not-allowed; /* Cursor de não permitido */
+  opacity: 0.65; /* Um pouco de transparência para indicar desabilitado */
+}
+
+.btn-modal-cancelar {
+  border: none;
+  background-color: transparent;
+  height: 52px;
+  padding: 10px 42px 10px 42px;
+  border-radius: 100px;
+  color: #707070;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.btn-fechar {
+  height: 42px;
+  padding: 9px 20px;
+  border-radius: 100px;
+  background: #131e23;
+  color: #fff;
+  text-align: center;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+}
+
+.text-delete {
+  color: #707070;
+  font-family: 'JetBrains Mono';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+}
+
+.btn-cancelar {
+  background-color: transparent;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 100px;
+  color: #707070;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.btn-excluir {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 100px;
+  background: #131e23;
+  color: #fff;
+  text-align: center;
+  font-family: 'Open Sans';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}

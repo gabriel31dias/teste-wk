@@ -1,0 +1,296 @@
+<div class="d-flex justify-content-center bg-fundo">
+    <div class="container cadastro">
+        <div class="row align-items-center">
+            <div class="col-9 title">Cadastro de produtos</div>
+            <div class="col-3 box-btn-cadastrar">
+                <button type="button" class="btn-cadastrar w-75" data-bs-toggle="modal" data-bs-target="#modalNewRegister">
+                    Novo cadastro &nbsp;
+                    <svg width="26" height="13" viewBox="0 0 26 13" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M25.7692 5.78749C25.9161 5.92812 26.0004 6.12501 26.0004 6.33128C26.0004 6.53754 25.9161 6.73131 25.7692 6.87507L20.2688 12.1254C19.9688 12.413 19.4937 12.4005 19.2093 12.1004C18.9249 11.8004 18.9343 11.3254 19.2343 11.041L23.3784 7.08133H1.12408C0.708423 7.08133 0.374023 6.74693 0.374023 6.33128C0.374023 5.91562 0.708423 5.58122 1.12408 5.58122H23.3784L19.2312 1.62469C18.9312 1.33717 18.9218 0.86526 19.2062 0.565239C19.4906 0.265218 19.9656 0.255842 20.2656 0.540237L25.766 5.79062L25.7692 5.78749Z"
+                            fill="white" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="table-responsive-md">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-3" scope="col">Código</th>
+                            <th class="col-3" scope="col">Nome</th>
+                            <th class="col-3" scope="col">Valor</th>
+                            <th class="col-1" scope="col"></th>
+                            <th class="col-1" scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let person of people">
+                            <td>{{ person . id }}</td>
+                            <td>{{ person . nome }}</td>
+                            <td>{{ person . valor }}</td>
+                            <td class="ml-5">
+                                <button (click)="selectProduct(person)" data-bs-toggle="modal"
+                                    data-bs-target="#modalEditRegister">
+                                    <img src="/assets/edit-light.svg" alt="Editar" />
+                                </button>
+                            </td>
+                            <td>
+                                <button (click)="currentId = person.id" data-bs-toggle="modal"
+                                    data-bs-target="#modalDeleteRegister">
+                                    <img src="/assets/trash-light.svg" alt="Deletar" />
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <!-- Modal Cadastro -->
+            <div class="modal fade" id="modalNewRegister" tabindex="-1" aria-labelledby="modalNewRegisterLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalNewRegisterLabel">
+                                Criar novo produto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="newProductForm" (ngSubmit)="createProduct()">
+                                <div class="col-12 mb-2">
+                                    <label for="inputNome" class="form-label">Nome</label>
+                                    <input type="text" placeholder="Insira o nome do produto" class="form-control"
+                                        id="inputNome" formControlName="nome" />
+                                    <div *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)" class="text-danger">
+                                        <div style="margin: 1% !important" *ngIf="nome?.errors?.['required']">
+                                            Nome é obrigatório.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <label for="inputAddress" class="form-label">Valor</label>
+                                    <input type="text" [value]="valor2"  class="form-control" id="inputAddress"
+                                     (keyup)="formatarMoeda($event)"
+                                        placeholder="Insira o valor do produto" formControlName="valor" />
+                                    <div *ngIf="valor?.invalid && (valor?.dirty || valor?.touched)" class="text-danger">
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['required']">
+                                            E-mail é obrigatório.
+                                        </div>
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['email']">
+                                            E-mail inválido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-modal-cadastro w-100 mb-2"
+                                        [disabled]="newProductForm.invalid">
+                                        Novo cadastro
+                                    </button>
+                                    <button type="button" class="btn-modal-cancelar w-100" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal Cadastro -->
+            <div class="modal fade" id="modalNewRegister" tabindex="-1" aria-labelledby="modalNewRegisterLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalNewRegisterLabel">
+                                Criar novo produto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="newProductForm" (ngSubmit)="createProduct()">
+                                <div class="col-12 mb-2">
+                                    <label for="inputNome" class="form-label">Nome</label>
+                                    <input type="text" placeholder="Insira o nome do produto" class="form-control"
+                                        id="inputNome" formControlName="nome" />
+                                    <div *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)" class="text-danger">
+                                        <div style="margin: 1% !important" *ngIf="nome?.errors?.['required']">
+                                            Nome é obrigatório.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <label for="inputAddress" class="form-label">Valor</label>
+
+                                    <input type="email" class="form-control" id="inputAddress"
+                                    (keyup)="formatarMoeda($event)"
+                                        placeholder="Insira o valor do produto" formControlName="valor" />
+                                    <div *ngIf="valor?.invalid && (valor?.dirty || valor?.touched)" class="text-danger">
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['required']">
+                                           valor é obrigatório. 
+                                        </div>
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['email']">
+                                            valor inválido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-modal-cadastro w-100 mb-2"
+                                        [disabled]="newProductForm.invalid">
+                                        Novo cadastro
+                                    </button>
+                                    <button type="button" class="btn-modal-cancelar w-100" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Modal Editar -->
+            <div class="modal fade" id="modalEditRegister" tabindex="-1" aria-labelledby="modalEditRegisterLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalEditRegisterLabel">
+                                Editar produto
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="editProductForm" (ngSubmit)="updatePerson()">
+                                <div class="col-12 mb-2">
+                               s     <label for="inputNome" class="form-label">Nome</label>
+                                    <input type="text" placeholder="Insira o nome do produto" class="form-control"
+                                        id="inputNome" formControlName="nome" />
+                                    <div *ngIf="editProductForm.get('nome')?.invalid && (editProductForm.get('nome')?.dirty || editProductForm.get('nome')?.touched)"  class="text danger">
+                                        <div style="margin: 1% !important" *ngIf="editProductForm.get('nome')?.errors?.['required']">
+                                            Nome é obrigatório.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-2">
+                                    <label for="inputAddress" class="form-label">Valor</label>
+                                    <input type="email" class="form-control" id="inputAddress"
+                                        (ngModelChange)="onInputMaskMoney($event)" 
+                                        placeholder="Insira o valor do produto" formControlName="valor" />
+                                    <div *ngIf="editProductForm.get('valor')?.invalid && (editProductForm.get('valor')?.dirty || editProductForm.get('valor')?.touched)" class="text-danger">
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['required']">
+                                            Valor é obrigatório.
+                                        </div>
+                                        <div style="margin: 1%" *ngIf="valor?.errors?.['email']">
+                                            Valor inválido.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn-modal-cadastro w-100 mb-2"
+                                        [disabled]="editProductForm.invalid">
+                                        Salvar
+                                    </button>
+                                    <button type="button" class="btn-modal-cancelar w-100" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Modal Deletar -->
+            <div class="modal fade" id="modalDeleteRegister" tabindex="-1" aria-labelledby="modalNewRegisterLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalNewRegisterLabel">
+                                Excluir cadastro
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-delete">
+                                O cadastro será excluído definitivamente. Você tem certeza que
+                                deseja continuar?
+                            </p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button class="btn-cancelar" data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button (click)="deleteProduct(currentId)" class="btn-excluir"
+                                (click)="deleteProduct(selectedPerson.id)" data-bs-dismiss="modal">
+                                <svg width="25" height="25" viewBox="0 0 25 25" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M11.3724 5.42554H14.263C14.4349 5.42554 14.5943 5.51304 14.688 5.65991L15.1662 6.42554H10.4724L10.9505 5.65991C11.0411 5.51304 11.2036 5.42554 11.3755 5.42554H11.3724ZM16.3474 6.42554L15.538 5.13179C15.263 4.69116 14.7818 4.42554 14.2661 4.42554H11.3724C10.8568 4.42554 10.3755 4.69116 10.1005 5.13179L9.29115 6.42554H7.8224H6.81927H6.31927C6.04427 6.42554 5.81927 6.65054 5.81927 6.92554C5.81927 7.20054 6.04427 7.42554 6.31927 7.42554H6.89115L7.68802 18.5693C7.7599 19.6162 8.63177 20.4255 9.68177 20.4255H15.9568C17.0068 20.4255 17.8755 19.6162 17.9505 18.5693L18.7474 7.42554H19.3193C19.5943 7.42554 19.8193 7.20054 19.8193 6.92554C19.8193 6.65054 19.5943 6.42554 19.3193 6.42554H18.8193H17.8161H16.3474ZM17.7474 7.42554L16.9536 18.4974C16.9161 19.0193 16.4818 19.4255 15.9568 19.4255H9.68177C9.15677 19.4255 8.7224 19.0193 8.6849 18.4974L7.89427 7.42554H17.7443H17.7474Z"
+                                        fill="white" />
+                                </svg>
+                                &nbsp; Excluir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal cadastro Sucesso -->
+            <div class="modal fade" id="modalNewRegisterSucess" tabindex="-1"
+                aria-labelledby="modalNewRegisterLabelSucess" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalNewRegisterLabelSucess">
+                                Cadastro criado com sucesso!
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn-fechar" data-bs-dismiss="modal" aria-label="Close">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Editado Sucesso -->
+            <div class="modal fade" id="modalNewRegisterEditS" tabindex="-1"
+                aria-labelledby="modalNewRegisterLabelEdit" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalNewRegisterLabelEdit">
+                                Cadastro editado com sucesso!
+                            </h5>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <button type="button" class="btn-fechar" data-bs-dismiss="modal" aria-label="Close">
+                                Fechar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
